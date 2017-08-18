@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.dentrassi.asyncapi.examples</groupId>
+    <artifactId>asyncapi-examples</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <name>AsyncAPI Examples</name>
+    <description>A few examples around the AsyncAPI tools</description>
+
+    <url>https://dentrassi.de/asyncapi</url>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <asyncapi.version>0.0.4-SNAPSHOT</asyncapi.version>
+    </properties>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git://github.com/ctron/asyncapi-examples.git</connection>
+        <url>https://github.com/ctron/asyncapi-examples</url>
+        <developerConnection>scm:git:git@github.com:ctron/asyncapi-examples.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <inceptionYear>2017</inceptionYear>
+
+    <developers>
+        <developer>
+            <id>ctron</id>
+
+            <name>Jens Reimann</name>
+            <email>jreimann@redhat.com</email>
+            <url>https://dentrassi.de</url>
+
+            <organization>Red Hat Inc</organization>
+            <organizationUrl>https://redhat.com</organizationUrl>
+        </developer>
+    </developers>
+
+    <modules>
+        <module>example-jms-client-1</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>de.dentrassi.asyncapi</groupId>
+                <artifactId>asyncapi</artifactId>
+                <version>${asyncapi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.dentrassi.asyncapi</groupId>
+                <artifactId>asyncapi-jms-amqp</artifactId>
+                <version>${asyncapi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.dentrassi.asyncapi</groupId>
+                <artifactId>asyncapi-gson</artifactId>
+                <version>${asyncapi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>1.2.3</version>
+                <scope>runtime</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.6.2</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>de.dentrassi.maven</groupId>
+                    <artifactId>asyncapi</artifactId>
+                    <version>${asyncapi.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
