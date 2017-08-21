@@ -33,8 +33,6 @@ topics:
   accounts.1.0.event.user.signup:
     subscribe:
       $ref: "#/components/messages/userSignedUp"
-    publish:
-      $ref: "#/components/messages/userSignedUp"
   email.1.0.event.email.sent:
     publish:
       $ref: "#/components/messages/emailSent"

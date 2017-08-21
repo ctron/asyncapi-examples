@@ -18,39 +18,30 @@ package de.dentrassi.asyncapi.example1;
 
 import java.time.ZonedDateTime;
 
-import de.dentrassi.asyncapi.ListenerHandle;
-import de.dentrassi.asyncapi.client.Client.Builder;
+import de.dentrassi.asyncapi.Connector.Builder;
 import de.dentrassi.asyncapi.gson.GsonPayloadFormat;
 import de.dentrassi.asyncapi.jms.amqp.AmqpProfile;
-import hitch.jms.client.JmsClient;
+import hitch.jms.server.JmsServer;
 import hitch.messages.UserSignedUp;
 import hitch.types.Signup;
 import hitch.types.Signup.Method;
 import hitch.types.User;
 
-public class Main {
+public class Server {
     public static void main(final String[] args) throws Exception {
 
-        final Builder<JmsClient> builder = JmsClient.newBuilder()
+        final Builder<JmsServer> builder = JmsServer.newBuilder()
                 .host("localhost")
                 .profile(AmqpProfile.DEFAULT_PROFILE)
                 .payloadFormat(new GsonPayloadFormat(gson -> {
                     gson.setPrettyPrinting();
                 }));
 
-        try (final JmsClient client = builder.build()) {
+        try (final JmsServer client = builder.build()) {
 
-            try (ListenerHandle listener = client.accounts().eventUserSignup().subscribe(System.out::println)) {
-
-                listener.toCompletableFuture().get();
-
-                client.accounts().eventUserSignup().publish(newUserMessage())
-                        .toCompletableFuture()
-                        .get();
-
-                Thread.sleep(1_000);
-
-            }
+            client.accounts().eventUserSignup().publish(newUserMessage())
+                    .toCompletableFuture()
+                    .get();
 
         }
     }
