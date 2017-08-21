@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.dentrassi.asyncapi.example2;
+package de.dentrassi.asyncapi.example1;
 
 import java.time.ZonedDateTime;
 
